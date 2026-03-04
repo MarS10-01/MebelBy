@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}Krovat.by{% endblock %}</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+
+        .header {
+            background: white;
+        }
+
+        .headero {
+            padding: 10px;
+            background: #f8f8f8;
+            border-bottom: 1px solid #eee;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .header-left {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .header-right {
+            margin-left: auto;
+        }
+
+        .headert {
+            padding: 15px 10px;
+            display: flex;
+            align-items: center;
+            max-width: 1200px;
+            margin: 0 auto;
+            width: 100%;
+        }
+
+        .headerth {
+            padding: 10px;
+            background: #2c3e50;
+        }
+
+        .logo {
+            color: #e74c3c;
+            font-size: 24px;
+            font-weight: bold;
+            text-decoration: none;
+            margin-right: 30px;
+        }
+
+        .nav {
+            display: flex;
+            gap: 20px;
+        }
+
+        .navs {
+            color: #333;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .navs:hover {
+            color: red;
+        }
+
+        .sear {
+            margin-left: auto;
+        }
+
+        .sear-in {
+            padding: 8px 12px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            min-width: 200px;
+        }
+
+        .categor {
+            display: flex;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+
+        /* Main Content */
+        .main-content {
+            flex: 1;
+            max-width: 1200px;
+            margin: 0 auto;
+            width: 100%;
+            padding: 20px 10px;
+        }
+
+        /* Footer */
+        .footer {
+            background: #2c3e50;
+            color: white;
+            padding: 30px 10px;
+            margin-top: auto;
+        }
+
+        .footer-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 40px;
+        }
+
+        .footers {
+            flex: 1;
+            min-width: 200px;
+        }
+
+        .footer-t {
+            font-size: 18px;
+            font-weight: bold;
+            margin-bottom: 15px;
+            color: #ecf0f1;
+        }
+
+        .footer-ls {
+            list-style: none;
+            padding: 0;
+        }
+
+        .footer-l {
+            margin-bottom: 8px;
+        }
+
+        .footer-l a {
+            color: #bdc3c7;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .footer-l a:hover {
+            color: white;
+            text-decoration: underline;
+        }
+
+        .footer-b {
+            border-top: 1px solid #34495e;
+            margin-top: 30px;
+            padding-top: 20px;
+            text-align: center;
+            color: #bdc3c7;
+            font-size: 14px;
+        }
+
+        .page-container {
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+
+        .text-center {
+            text-align: center;
+        }
+
+        .mt-20 {
+            margin-top: 20px;
+        }
+
+        .mb-20 {
+            margin-bottom: 20px;
+        }
+
+        .py-20 {
+            padding-top: 20px;
+            padding-bottom: 20px;
+        }
+    </style>
+    {% block extra_css %}{% endblock %}
+</head>
+<body>
+    <div class="page-container">
+        <header class="header">
+            <div class="headero">
+                <div class="header-left">
+                    <span>Минск</span>
+                    <span> | </span>
+                    <span>+375 (44) 411-99-57</span>
+                </div>
+                <div class="header-right">
+                     {% if user.is_authenticated %}
+                    <p>Вы <b>{{user.get_username}}</b></p>
+
+                        <form method="post" action="{% url 'logout'%}">
+                            {% csrf_token %}
+                            <button type="submit">Выйти</button>
+                        </form>
+                        {% else %}
+                        <form action="{% url 'login' %}">
+                            {% csrf_token %}
+                            <button type="submit">Войти</button>
+                        </form>
+                    {% endif %}
+                </div>
+            </div>
+
+            <div class="headert">
+                <a href="/" class="logo">krovat.by</a>
+
+                <nav class="nav">
+                    <a href="{% block catalog_url %}#{% endblock %}" class="navs">Каталог</a>
+                    <a href="{% block sales_url %}#{% endblock %}" class="navs">Акции</a>
+                    <a href="{% block journal_url %}#{% endblock %}" class="navs">Журнал</a>
+                    <a href="{% block addresses_url %}#{% endblock %}" class="navs">Адреса</a>
+                </nav>
+
+                <div class="sear">
+                    <input type="text" class="sear-in" placeholder="Введите запрос">
+                </div>
+            </div>
+        </header>
+
+        <main class="main-content">
+            {% block content %}
+            <h1>Добро пожаловать в Krovat.by</h1>
+            {% endblock %}
+        </main>
+
+        <footer class="footer">
+            <div class="footer-container">
+                <div class="footers">
+                    <div class="footer-t">О компании</div>
+                    <ul class="footer-ls">
+                        <li class="footer-l"><a href="#">О нас</a></li>
+                        <li class="footer-l"><a href="#">Контакты</a></li>
+                        <li class="footer-l"><a href="#">Вакансии</a></li>
+                        <li class="footer-l"><a href="#">Новости</a></li>
+                    </ul>
+                </div>
+
+                <div class="footers">
+                    <div class="footer-t">Помощь</div>
+                    <ul class="footer-ls">
+                        <li class="footer-l"><a href="#">Доставка и оплата</a></li>
+                        <li class="footer-l"><a href="#">Гарантия</a></li>
+                        <li class="footer-l"><a href="#">Возврат товара</a></li>
+                        <li class="footer-l"><a href="#">Вопросы и ответы</a></li>
+                    </ul>
+                </div>
+
+                <div class="footers">
+                    <div class="footer-t">Покупателям</div>
+                    <ul class="footer-ls">
+                        <li class="footer-l"><a href="#">Кредит</a></li>
+                        <li class="footer-l"><a href="#">Рассрочка</a></li>
+                        <li class="footer-l"><a href="#">Бонусная программа</a></li>
+                        <li class="footer-l"><a href="#">Подарочные сертификаты</a></li>
+                    </ul>
+                </div>
+
+                <div class="footers">
+                    <div class="footer-t">Контакты</div>
+                    <ul class="footer-ls">
+                        <li class="footer-l">Минск, +375 (44) 411-99-57</li>
+                        <li class="footer-l">Пн-Пт: 9:00-21:00</li>
+                        <li class="footer-l">Сб-Вс: 10:00-20:00</li>
+                        <li class="footer-l"><a href="mailto:info@divan.by">info@krovat.by</a></li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="footer-b">
+                <p>© {% now "Y" %} krovat.by. Все права защищены.</p>
+            </div>
+        </footer>
+    </div>
+
+    {% block extra_js %}{% endblock %}
+</body>
+</html>

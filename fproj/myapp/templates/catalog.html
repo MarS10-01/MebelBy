@@ -1,0 +1,140 @@
+{% extends "base.html" %}
+
+{% block content %}
+<style>
+    .product-card {
+        border: 1px solid #eee;
+        border-radius: 12px;
+        padding: 20px;
+        transition: transform 0.2s, box-shadow 0.2s;
+        background: white;
+        display: flex;
+        flex-direction: column;
+    }
+
+    .product-card:hover {
+        transform: translateY(-20px);
+        box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+    }
+
+    .product-image {
+        background: #f8f9fa;
+        height: 200px;
+        border-radius: 8px;
+        margin-bottom: 15px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: #adb5bd;
+        font-size: 14px;
+    }
+    .product-image img{
+        width:100%;
+        height:100%;
+        object-fit:cover;
+    }
+
+    .discount-badge {
+        background: #ff6b6b;
+        color: white;
+        padding: 4px 8px;
+        border-radius: 4px;
+        font-size: 14px;
+        font-weight: bold;
+        display: inline-block;
+        margin-bottom: 10px;
+    }
+
+    .current-price {
+        color: #ff6b6b;
+        font-size: 24px;
+        font-weight: bold;
+    }
+
+    .product-title {
+        color: #495057;
+        text-decoration: none;
+        font-size: 18px;
+        margin: 10px 0;
+        font-weight: 500;
+    }
+
+    .product-title:hover {
+        color: #ff6b6b;
+    }
+
+    .product-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+        gap: 30px;
+        padding: 20px 0;
+    }
+
+    .product-footer {
+        margin-top: auto;
+        padding-top: 15px;
+    }
+
+    .detail-btn {
+        background: #e9ecef;
+        color: #495057;
+        text-decoration: none;
+        padding: 8px 16px;
+        border-radius: 6px;
+        font-size: 14px;
+        display: inline-block;
+        transition: background 0.2s;
+    }
+
+    .detail-btn:hover {
+        background: #dee2e6;
+    }
+</style>
+
+<h1 style="margin-bottom: 30px; color: #333;">Каталог мебели</h1>
+
+{% if mebel_list %}
+    <div class="product-grid">
+        {% for mebel in mebel_list %}
+        <div class="product-card">
+            <span class="discount-badge">99%</span>
+
+            <div class="product-image">
+                {% if mebel.image %}
+                    <img src="{{ mebel.image }}" alt="{{ mebel.title }}">
+                {% else %}
+                    <span style="color:#9ba2aa ">🛏️ Изображение отсуствует</span>
+                {% endif %}
+
+            </div>
+
+            <a href="{{ mebel.get_absolute_url }}" class="product-title">
+                {{ mebel.title }}
+            </a>
+
+            <p style="color: #868e96; font-size: 14px; margin: 5px 0;">
+                {{ mebel.type.name }} | {{ mebel.color.name }}
+            </p>
+
+            <div style="margin: 15px 0;">
+                {% if mebel.price %}
+                    <span class="current-price">{{ mebel.price }} руб.</span>
+                {% else %}
+                    <span class="current-price">Цена не указана</span>
+                {% endif %}
+            </div>
+
+            <div class="product-footer">
+                <a href="{{ mebel.get_absolute_url }}" class="detail-btn">
+                    Подробнее →
+                </a>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+{% else %}
+    <p style="text-align: center; padding: 50px; color: #868e96; background: #f8f9fa; border-radius: 12px;">
+        В базе данных нет мебели
+    </p>
+{% endif %}
+{% endblock %}

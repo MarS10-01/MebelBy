@@ -1,0 +1,47 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div style="max-width: 1600px; margin: 0 auto; padding: 20px;">
+    <div style="display: flex; gap: 30px; background: #fff; border-radius: 12px; box-shadow: 0 4px 12px rgba(0,0,0,0.1); padding: 30px;">
+
+        <div style="background: #f8f9fa; border-radius: 12px; display: flex; align-items: center; justify-content: center; min-height: 400px; padding: 20px;">
+            {% if mebel.image %}
+                <img src="{{ mebel.image }}" alt="{{ mebel.title }}" style="max-width: 100%; max-height: 300px; object-fit: contain;">
+            {% else %}
+                <div style="text-align: center;">
+                    <div style="font-size: 80px; margin-bottom: 20px;">🛏️</div>
+                    <span style="color: #6c757d;">Нет изображения</span>
+                </div>
+            {% endif %}
+        </div>
+
+        <div style="flex: 1;">
+            <h1 style="margin-top: 0; color: #333;">{{ mebel.title }}</h1>
+
+            <p style="font-size: 24px; color: #2c3e50; font-weight: bold;">
+                {{ mebel.size }} см.
+            </p>
+            <p style="font-size: 24px; color: #2c3e50; font-weight: bold;">
+                {{ mebel.price }} руб.
+            </p>
+            <div style="background: #f8f9fa; border-radius: 8px; padding: 20px; margin: 20px 0;">
+                <p><strong>Вид:</strong> {{ mebel.type.name }}</p>
+                <p><strong>Издатель:</strong> {{ mebel.izd.name }}</p>
+                {% if mebel.izd.geo %}
+                <p><strong>Страна:</strong> {{ mebel.izd.geo }}</p>
+                {% endif %}
+                <p><strong>Размеры:</strong> {{ mebel.size }}</p>
+                <p><strong>Цвет:</strong> {{ mebel.color.name }}</p>
+            </div>
+
+            <p style="color: #666;">{{ mebel.summary }}</p>
+
+            <div style="display: flex; gap: 15px; margin-top: 30px;">
+                <a href="{% url 'mebel-list' %}" style="background: #e9ecef; color: #495057; text-decoration: none; padding: 12px 30px; border-radius: 6px; font-size: 16px;">
+                    Назад к списку
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

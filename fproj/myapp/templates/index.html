@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+
+{% block title %}Главная страница - Krovat.by{% endblock %}
+
+{% block catalog_url %}/catalog{% endblock %}
+{% block sales_url %}/sales{% endblock %}
+{% block journal_url %}/journal{% endblock %}
+{% block addresses_url %}/addresses{% endblock %}
+
+{% block content %}
+<div class="text-center py-20">
+    <h1 class="mb-20">Добро пожаловать в интернет-магазин Krovat.by!</h1>
+    <p>Лучшие кровати и матрасы для вашего комфортного сна.</p>
+</div>
+{% endblock %}
+
+{% block extra_css %}
+<style>
+    .welcome-section {
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        color: white;
+        padding: 60px 20px;
+        border-radius: 10px;
+        margin-bottom: 30px;
+    }
+</style>
+{% endblock %}

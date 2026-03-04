@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+{% block content %}
+    <p class="text-center py-20">Выход из системы</p>
+    <button class="but">
+    <a href="{% url 'login' %}" style="text-decoration: none; color: inherit;">
+        Войти снова
+    </a>
+  </button>
+{% endblock %}
+
+{% block extra_css %}
+<style>
+  .but{
+    color: white;
+    background-color:#d32a18;
+    border:none;
+    border-radius:4px;
+    width:100%;
+    cursor: pointer;
+    font-size: 16px;
+    margin-bottom:10px;
+    padding: 12px
+  }
+  .but:hover{
+    background-color:red;
+  }
+
+</style>
+{% endblock %}
