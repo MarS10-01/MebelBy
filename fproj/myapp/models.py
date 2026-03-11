@@ -36,6 +36,11 @@ class Mebel(models.Model):
         null=True,
         blank=True
     )
+    quantity = models.PositiveIntegerField(
+        default=0,
+        help_text='Введите количество товара в наличии',
+        verbose_name='Количество'
+    )
     def __str__(self):
         return self.title
     def get_absolute_url(self):

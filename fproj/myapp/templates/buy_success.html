@@ -1,10 +1,78 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ru">
 <head>
-  <meta charset="UTF-8">
-  <title>$Title$</title>
+    <meta charset="UTF-8">
+    <title>Покупка успешна</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+            background-color: #f8f9fa;
+        }
+        .container {
+            max-width: 600px;
+            margin: 50px auto;
+            background: white;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            text-align: center;
+        }
+        .success-icon {
+            font-size: 80px;
+            color: #4CAF50;
+            margin-bottom: 20px;
+        }
+        h1 {
+            color: #4CAF50;
+            margin-top: 0;
+        }
+        .product-info {
+            border: 1px solid #dee2e6;
+            padding: 20px;
+            border-radius: 5px;
+            margin: 20px 0;
+            background-color: #f8f9fa;
+            text-align: left;
+        }
+        .btn {
+            display: inline-block;
+            padding: 12px 30px;
+            background-color: #4CAF50;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+            font-size: 16px;
+            margin-top: 20px;
+        }
+        .btn:hover {
+            background-color: #45a049;
+        }
+    </style>
 </head>
 <body>
-$END$
+    <div class="container">
+        <div class="success-icon">✓</div>
+        <h1>Покупка успешно совершена!</h1>
+        <p>Спасибо за ваш заказ</p>
+
+        <div class="product-info">
+            <h2>{{ mebel.title }}</h2>
+            <p><strong>Вид:</strong> {{ mebel.type.name }}</p>
+            <p><strong>Издатель:</strong> {{ mebel.izd.name }}</p>
+            {% if mebel.size %}
+                <p><strong>Размеры:</strong> {{ mebel.size }}</p>
+            {% endif %}
+            {% if mebel.color %}
+                <p><strong>Цвет:</strong> {{ mebel.color.name }}</p>
+            {% endif %}
+          <p><strong>Цена:</strong> {{ mebel.price }} руб.</p>
+        </div>
+
+        <p>Оставшееся количество: {{ mebel.quantity }} шт.</p>
+
+        <a href="{% url 'mebel-list' %}" class="btn">Вернуться в каталог</a>
+    </div>
 </body>
 </html>

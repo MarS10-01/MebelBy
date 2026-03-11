@@ -123,7 +123,16 @@
                     <span class="current-price">Цена не указана</span>
                 {% endif %}
             </div>
-
+            <p style="color: #868e96; font-size: 14px; margin: 5px 0;">В наличии: {{ mebel.quantity }} шт.</p>
+            {% if mebel.quantity > 0 %}
+                <div class="product-footer">
+                    <a href="{% url 'buy-product' mebel.pk %}" class="detail-btn" style="color:green">Купить →</a>
+                </div>
+            {% else %}
+                <button disabled style="background:#ccc; padding:10px 20px; border-radius:5px;">
+                    Нет в наличии
+                </button>
+            {% endif %}
             <div class="product-footer">
                 <a href="{{ mebel.get_absolute_url }}" class="detail-btn">
                     Подробнее →

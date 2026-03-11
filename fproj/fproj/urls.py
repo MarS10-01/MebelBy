@@ -24,5 +24,6 @@ urlpatterns = [
     path('accounts/', include('django.contrib.auth.urls')),
     url(r'^catalog/$', views.MebelListView.as_view(), name='mebel-list'),
     path('catalog/<int:pk>/', views.MebelDetailView.as_view(), name='mebel-detail'),
+    path('buy/<int:pk>/', views.buy_product, name='buy-product'),
 
 ]
