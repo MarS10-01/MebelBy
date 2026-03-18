@@ -206,8 +206,9 @@
                         {% else %}
                         <form action="{% url 'login' %}">
                             {% csrf_token %}
-                            <button type="submit">Войти</button>
+                            <button type="submit" style="width:150px">Войти</button>
                         </form>
+                        <button style="width:150px"><a href="{% url 'register' %}" style="text-decoration: none;color: inherit">Зарегестрироваться</a></button>
                     {% endif %}
                 </div>
             </div>
