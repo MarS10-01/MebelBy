@@ -26,5 +26,6 @@ urlpatterns = [
     path('catalog/<int:pk>/', views.MebelDetailView.as_view(), name='mebel-detail'),
     path('buy/<int:pk>/', views.buy_product, name='buy-product'),
     path('register/', views.register, name='register'),
+    path('map/', views.map, name='map'),
 
 ]
