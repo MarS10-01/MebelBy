@@ -1,17 +1,31 @@
 {% extends "base.html" %}
 
 {% block title %}Главная страница - Krovat.by{% endblock %}
-
-{% block catalog_url %}/catalog{% endblock %}
-{% block sales_url %}/sales{% endblock %}
-{% block journal_url %}/journal{% endblock %}
-{% block addresses_url %}/addresses{% endblock %}
-
 {% block content %}
 <div class="text-center py-20">
     <h1 class="mb-20">Добро пожаловать в интернет-магазин Krovat.by!</h1>
     <p>Лучшие кровати и матрасы для вашего комфортного сна.</p>
 </div>
+<div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; margin: 40px 0;">
+    <div style="text-align: center; padding: 20px; background: #f8f8f8; border-radius: 8px;">
+        <div style="font-size: 40px; margin-bottom: 10px;">🛏️</div>
+        <h2>Качественные материалы</h2>
+    </div>
+
+    <div style="text-align: center; padding: 20px; background: #f8f8f8; border-radius: 8px;">
+        <div style="font-size: 40px; margin-bottom: 10px;">🚚</div>
+        <h2>Бесплатная доставка</h2>
+    </div>
+
+    <div style="text-align: center; padding: 20px; background: #f8f8f8; border-radius: 8px;">
+        <div style="font-size: 40px; margin-bottom: 10px;">💰</div>
+        <h2>Удобная оплата</h2>
+    </div>
+</div>
+<div style="text-align: center; padding: 20px; background: #dfdfdf; border-radius: 8px;">
+        <div style="font-size: 40px; margin-bottom: 10px;">💲</div>
+    <button style="background: #f56363; width:100%; text-align:center;border-radius: 8px;font-size:20px; height:35px"><a href="{% url 'mebel-list' %}" style="text-decoration: none;color: inherit;">Перейти в каталог</a></button>
+    </div>
 {% endblock %}
 
 {% block extra_css %}

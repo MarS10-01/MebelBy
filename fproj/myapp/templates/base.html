@@ -197,18 +197,17 @@
                 </div>
                 <div class="header-right">
                      {% if user.is_authenticated %}
-                    <p>Вы <b>{{user.get_username}}</b></p>
+                    <p style="text-align: center">Вы <b>{{user.get_username}}</b></p>
 
                         <form method="post" action="{% url 'logout'%}">
                             {% csrf_token %}
-                            <button type="submit">Выйти</button>
+                            <button type="submit" style="width:150px">Выйти</button>
                         </form>
                         {% else %}
                         <form action="{% url 'login' %}">
                             {% csrf_token %}
                             <button type="submit" style="width:150px">Войти</button>
                         </form>
-                        <button style="width:150px"><a href="{% url 'register' %}" style="text-decoration: none;color: inherit">Зарегестрироваться</a></button>
                     {% endif %}
                 </div>
             </div>
@@ -217,10 +216,10 @@
                 <a href="/" class="logo">krovat.by</a>
 
                 <nav class="nav">
-                    <a href="{% block catalog_url %}#{% endblock %}" class="navs">Каталог</a>
-                    <a href="{% block sales_url %}#{% endblock %}" class="navs">Акции</a>
-                    <a href="{% block journal_url %}#{% endblock %}" class="navs">Журнал</a>
-                    <a href="{% block addresses_url %}#{% endblock %}" class="navs">Адреса</a>
+                    <a href="{% url 'mebel-list' %}" class="navs">Каталог</a>
+                    <a href="" class="navs">Акции</a>
+                    <a href="" class="navs">Журнал</a>
+                    <a href="" class="navs">Адреса</a>
                 </nav>
 
                 <div class="sear">
