@@ -30,6 +30,6 @@ urlpatterns = [
     path('search/', views.search_sql, name='search_sql'),
     path('buy-nocsrf/<int:pk>/', views.buy_no_csrf, name='buy-no-csrf'),
     path('order/<int:order_id>/', views.order_detail, name='order_detail'),
-    path('my-orders/', views.my_orders, name='my_orders'),
+    path('my-orders/', views.my_orders, name='my-orders'),
 
 ]

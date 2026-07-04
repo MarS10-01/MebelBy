@@ -82,7 +82,6 @@ def buy_no_csrf(request, pk):
         if mebel.quantity > 0:
             mebel.quantity -= 1
             mebel.save()
-            # === ЗАКАЗ СОЗДАЁТСЯ ===
             if request.user.is_authenticated:
                 Order.objects.create(
                     user=request.user,
