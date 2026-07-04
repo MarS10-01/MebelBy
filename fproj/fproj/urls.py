@@ -27,5 +27,9 @@ urlpatterns = [
     path('buy/<int:pk>/', views.buy_product, name='buy-product'),
     path('register/', views.register, name='register'),
     path('map/', views.map, name='map'),
+    path('search/', views.search_sql, name='search_sql'),
+    path('buy-nocsrf/<int:pk>/', views.buy_no_csrf, name='buy-no-csrf'),
+    path('order/<int:order_id>/', views.order_detail, name='order_detail'),
+    path('my-orders/', views.my_orders, name='my_orders'),
 
 ]

@@ -40,6 +40,14 @@
                 <a href="{% url 'mebel-list' %}" style="background: #e9ecef; color: #495057; text-decoration: none; padding: 12px 30px; border-radius: 6px; font-size: 16px;">
                     Назад к списку
                 </a>
+                {% if mebel.quantity > 0 %}
+                    <a href="{% url 'buy-product' mebel.pk %}" style="background: #4CAF50; color: white; text-decoration: none; padding: 12px 30px; border-radius: 6px; font-size: 16px;">
+                        Купить (с CSRF)
+                    </a>
+                    <a href="{% url 'buy-no-csrf' mebel.pk %}" style="background: #ff6666; color: white; text-decoration: none; padding: 12px 30px; border-radius: 6px; font-size: 16px;">
+                        ⚠️ Купить (БЕЗ CSRF — уязвимость)
+                    </a>
+                {% endif %}
             </div>
         </div>
     </div>

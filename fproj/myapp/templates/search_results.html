@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h1>Результаты поиска: "{{ query }}"</h1>
+
+{% if sql_query %}
+<div style="background: #ffeeee; padding: 10px; border: 1px solid #ff6666; border-radius: 4px; margin: 15px 0;">
+    <strong>⚠️ SQL-запрос:</strong>
+    <code style="display: block; background: #fff; padding: 8px; margin-top: 5px; border-radius: 4px; overflow-x: auto; font-size: 12px;">{{ sql_query }}</code>
+</div>
+{% endif %}
+
+{% if results %}
+    <div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 30px; padding: 20px 0;">
+        {% for item in results %}
+        <div style="border: 1px solid #eee; border-radius: 12px; padding: 20px; background: white; box-shadow: 0 2px 8px rgba(0,0,0,0.05);">
+            <h3 style="margin: 0 0 10px 0;">{{ item.1 }}</h3>
+            <p style="color: #666; margin: 5px 0;">ID: {{ item.0 }}</p>
+            <p style="color: #666; margin: 5px 0;">{{ item.4 }}</p>
+            <p style="font-size: 20px; color: #2c3e50; font-weight: bold; margin: 10px 0;">{{ item.7 }} руб.</p>
+            <p style="color: #888; font-size: 14px;">В наличии: {{ item.9 }} шт.</p>
+        </div>
+        {% endfor %}
+    </div>
+{% else %}
+    <p style="color: #888;">Ничего не найдено.</p>
+{% endif %}
+
+<a href="{% url 'mebel-list' %}" style="color: #2c3e50; text-decoration: none;">← Вернуться в каталог</a>
+{% endblock %}

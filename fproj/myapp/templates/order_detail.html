@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div style="max-width: 800px; margin: 0 auto; padding: 20px;">
+
+    <div style="background: #ffeeee; padding: 10px; border: 1px solid #ff6666; border-radius: 4px; margin-bottom: 20px;">
+        <strong>⚠️ IDOR-УЯЗВИМОСТЬ:</strong>
+        Любой авторизованный пользователь может посмотреть этот заказ,
+        просто изменив ID в URL.
+    </div>
+
+    <h1>Заказ #{{ order.id }}</h1>
+
+    <div style="background: #f8f9fa; padding: 20px; border-radius: 8px; margin: 20px 0;">
+        <p><strong>Покупатель:</strong> {{ order.user.username }}</p>
+        <p><strong>Товар:</strong> {{ order.mebel.title }}</p>
+        <p><strong>Количество:</strong> {{ order.quantity }} шт.</p>
+        <p><strong>Цена за единицу:</strong> {{ order.price }} руб.</p>
+        <p><strong>Итого:</strong> {{ order.quantity|floatformat:0|add:0 }} руб.</p>
+        <p><strong>Дата заказа:</strong> {{ order.created_at|date:"d.m.Y H:i" }}</p>
+    </div>
+
+    <p style="color: #888; font-size: 14px;">💡 Попробуйте изменить ID в URL на другой номер (например, /order/1/, /order/2/)</p>
+
+    <a href="{% url 'my-orders' %}" style="color: #2c3e50; text-decoration: none;">← Мои заказы</a>
+</div>
+{% endblock %}
