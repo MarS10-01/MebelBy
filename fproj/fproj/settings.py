@@ -25,7 +25,7 @@ SECRET_KEY = 'django-insecure-jwlq5glu)0o4qx25-oejph77ao$ss-z6r!cwjb%ot9*#vi55f=
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['MarS1001.pythonanywhere.com']
 
 
 # Application definition
@@ -124,3 +124,4 @@ EMAIL_USE_SSL = True
 EMAIL_PORT = 465
 EMAIL_HOST_USER = 'markgrastef@gmail.com'
 EMAIL_HOST_PASSWORD = 'pulu imbt vjey fzmk'
+STATIC_ROOT = os.path.join(BASE_DIR, 'static')
